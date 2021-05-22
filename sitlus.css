@@ -1,0 +1,42 @@
+@charset "UTF-8";
+body{
+    background: lightblue;
+}
+main, header, div, section, article, footer{
+    border:1px solid gray;
+    padding: 5px;
+}
+main{
+    max-width: 500px;
+    margin: auto;
+}
+table {
+    border-collapse:collapse;
+    width:100%;
+    background-color: lightgreen;
+}
+table td, th {
+    border:1px solid gray;
+  }
+th{
+    background: lightblue;
+}
+table tr:nth-child(even){
+    background:lightgoldenrodyellow
+    
+}
+.kiemel{
+ background: pink;
+ cursor:grab;
+    
+}
+form fieldset{
+    display:grid;
+    grid-template-columns:100px auto;
+
+}
+label{
+    text-align: right;
+}
+
+
