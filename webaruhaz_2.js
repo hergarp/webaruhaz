@@ -21,26 +21,26 @@ $(function () {
 );
 var termekekTomb = [];
 function mentes() {
-//    var termekObejktum = {};
-//        termekObejktum.nev = $("#nev").val();
-//        termekObejektum.cikkszam = $("#cikkszam").val();
-//        termekObejektum.ar= $("#ar").val();
-//        termekObejektum.db= $("#darab").val();
-//        if($("input:radio[name=keszlet]:checked").val()==="van"){
-//            termekObejektum.keszlet="van";
-//        } else{
-//            termekObejektum.keszlet="nincs";
-//        }
-//  
-    var termekObejktum = {
-        név: $("#nev").val(),
-        cikkszám: $("#cikkszam").val(),
-        ár: $("#ar").val(),
-        mirelit: true,
-        db: $("#darab").val()
-    };
-    termekekTomb.push(termekObejktum);
-    console.log(termekObejktum);
+    var termekObjektum = {};
+        termekObjektum.nev = $("#nev").val();
+        termekObjektum.cikkszam = $("#cikkszam").val();
+        termekObjektum.ar= $("#ar").val();
+        termekObjektum.db= $("#darab").val();
+        if($("input:radio[name=keszleten]:checked").val()==="van"){
+            termekObjektum.keszlet="van";
+        } else{
+            termekObjektum.keszlet="nincs";
+        }
+  
+//    var termekObejktum = {
+//        név: $("#nev").val(),
+//        cikkszám: $("#cikkszam").val(),
+//        ár: $("#ar").val(),
+//        mirelit: true,
+//        db: $("#darab").val()
+//    };
+    termekekTomb.push(termekObjektum);
+    console.log(termekObjektum);
     kiir();
 }
 var irany = true;
@@ -56,7 +56,8 @@ function kiir(){
         $("article table tr").append("<th id='" + item + "'>" + item + " </th>");
 
     }
-    for (var i = 0; i < termekekTomb.length; i++) {
+    $("article table tr").append("<th>Törlés</th>");
+    for (let i = 0; i < termekekTomb.length; i++) {
         $("article table").append("<tr>");
         for (var item in termekekTomb[i]) {
 //            console.log("aktuális objektum " + JSON.stringify(tomb[i]));
@@ -66,7 +67,14 @@ function kiir(){
 
         }
         ;
-       
+        $("article table tr").eq(i + 1).append("<td>"+ "<button id='"+i+"'>TÖRÖL</button>" + " </td>");
+        $("#"+i).click(function(){
+            console.log(i);
+             $("article table tr").eq(i+1).remove();
+             termekekTomb.splice(i,1);
+//             kiir();
+        }
+     );  
     }
      $("article th").hover( kiemel);
  }
