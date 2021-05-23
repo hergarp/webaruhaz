@@ -2,7 +2,7 @@
 
 $(function () {
     $("#kuld").click(mentes);
-
+    $("#torol").click(torol);
     $.ajax(
             {url: "termekek.json",
                 success: function (result) {
@@ -11,27 +11,27 @@ $(function () {
                 }
             }
     );
- 
-  $("#torol").click(function(){
-    $("article").remove("th");
-     
-  });
-   $("article").on("click", "th", rendez);
+
+    $("#torol").click(function () {
+        $("article").remove("th");
+
+    });
+    $("article").on("click", "th", rendez);
 }
 );
 var termekekTomb = [];
 function mentes() {
     var termekObjektum = {};
-        termekObjektum.nev = $("#nev").val();
-        termekObjektum.cikkszam = $("#cikkszam").val();
-        termekObjektum.ar= $("#ar").val();
-        termekObjektum.db= $("#darab").val();
-        if($("input:radio[name=keszleten]:checked").val()==="van"){
-            termekObjektum.keszlet="van";
-        } else{
-            termekObjektum.keszlet="nincs";
-        }
-  
+    termekObjektum.nev = $("#nev").val();
+    termekObjektum.cikkszam = $("#cikkszam").val();
+    termekObjektum.ar = $("#ar").val();
+
+    if ($("input:radio[name=keszleten]:checked").val() === "van") {
+        termekObjektum.keszlet = "van";
+    } else {
+        termekObjektum.keszlet = "nincs";
+    }
+    termekObjektum.db = $("#darab").val();
 //    var termekObejktum = {
 //        név: $("#nev").val(),
 //        cikkszám: $("#cikkszam").val(),
@@ -44,10 +44,10 @@ function mentes() {
     kiir();
 }
 var irany = true;
-function kiemel(){
+function kiemel() {
     $(this).toggleClass("kiemel");
 }
-function kiir(){
+function kiir() {
 
     $("article").empty();
     $("article").append("<table>");
@@ -67,17 +67,23 @@ function kiir(){
 
         }
         ;
-        $("article table tr").eq(i + 1).append("<td>"+ "<button id='"+i+"'>TÖRÖL</button>" + " </td>");
-        $("#"+i).click(function(){
+        $("article table tr").eq(i + 1).append("<td>" + "<button id='" + i + "'>TÖRÖL</button>" + " </td>");
+        $("#" + i).click(function () {
             console.log(i);
-             $("article table tr").eq(i+1).remove();
-             termekekTomb.splice(i,1);
+            $("article table tr").eq(i + 1).remove();
+            termekekTomb.splice(i, 1);
 //             kiir();
         }
-     );  
+        );
     }
-     $("article th").hover( kiemel);
- }
+    $("article th").hover(kiemel);
+}
+function torol() {
+    $("#nev").val(null);
+    $("#cikkszam").val(null);
+    $("#ar").val(null);
+    $("#darab").val(null);
+}
 function rendez() {
     var mezo = $(this).attr("id");
 
@@ -99,7 +105,7 @@ function rendez() {
         }
 
     } else {
-       //rendezzük név szerint
+        //rendezzük név szerint
         if (irany) {
             termekekTomb.sort(
                     function (a, b) {

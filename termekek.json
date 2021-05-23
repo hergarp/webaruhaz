@@ -2,12 +2,12 @@
         "név": "pumpa",
         "cikkszám": 1234,
         "ár": 465,
-        "készleten": true,
+        "készleten": "van",
         "db": 1
     }, {
         "név": "kerek",
         "cikkszám": 1235,
         "ár": 1000,
-        "készleten": true,
+        "készleten": "van",
         "db": 1
     }]
